@@ -4,7 +4,7 @@
 # General configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = "BIFE Album"
-PROJECT_NUMBER         = 0.11
+PROJECT_NUMBER         = 0.12
 OUTPUT_DIRECTORY       = api
 OUTPUT_LANGUAGE        = English
 USE_WINDOWS_ENCODING   = NO

@@ -3,7 +3,7 @@
 <package version="1.0">
     <name>BIFE_Album</name>
     <summary>BIFE Album Widget Set</summary>
-    <description>TBD.
+    <description>TBD. <!-- TODO -->
     </description>
     <license>GPL</license>
     <maintainers>
@@ -16,7 +16,7 @@
     </maintainers>
 
     <release>
-        <version>0.11</version>
+        <version>0.12</version>
         <date>2003-06-29</date>
         <state>alpha</state>
         <notes>Check http://bife.llucax.hn.org/ for details.</notes>
@@ -33,6 +33,7 @@
             <!-- DOC -->
             <dir name="examples" role="doc">
             <file>index.php</file>
+            <file>bife.php</file>
             <file>index.xbf</file>
             <file>photo.xbf</file>
                 <dir name="templates">
@@ -55,6 +56,6 @@
         <dep type="php" rel="ge">4.2.3</dep>
         <dep type="pkg" rel="ge" version="1.0.0beta1">HTML_Template_HIT</dep>
         <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE</dep>
-        <dep type="pkg" rel="ge" version="0.11">BIFE_Basic</dep>
+        <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE_Basic</dep>
     </deps>
 </package>
