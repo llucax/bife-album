@@ -55,6 +55,6 @@
         <dep type="php" rel="ge">4.2.3</dep>
         <dep type="pkg" rel="ge" version="1.0.0beta1">HTML_Template_HIT</dep>
         <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE</dep>
-        <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE_Basic</dep>
+        <dep type="pkg" rel="ge" version="0.11">BIFE_Basic</dep>
     </deps>
 </package>
