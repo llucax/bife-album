@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmlns:UML="org.omg/standards/UML" verified="false" timestamp="" xmi.version="1.2" >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
+   <XMI.exporterVersion>1.1</XMI.exporterVersion>
+  </XMI.documentation>
+  <XMI.model xmi.name="album" href="/home/luca/website/www/test/bife/album/album.xmi" />
+  <XMI.metamodel xmi.name="UML" href="UML.xml" xmi.version="1.3" />
+ </XMI.header>
+ <XMI.content>
+  <docsettings viewid="114" documentation="Parse XML data getting widgets." uniqueid="155" />
+  <umlobjects>
+   <UML:Class stereotype="" package="BIFE" xmi.id="3" abstract="1" documentation="Base widget class.
+x2c:extern" name="Widget" static="0" scope="200" />
+   <UML:Class stereotype="" package="BIFE/Album" xmi.id="20" abstract="0" documentation="Photo album widget. [TODO: Make a better explanation]" name="Thumbs" static="0" scope="200" >
+    <UML:Operation stereotype="" package="" xmi.id="22" type="void" abstract="0" documentation="Constructor." name="BIFE_Album_Thumbs" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="array" abstract="0" documentation="Attributes." name="attrs" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="57" type="void" abstract="0" documentation="Constructor." name="__construct" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="array" abstract="0" documentation="Attributes." name="attrs" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="23" type="string" abstract="0" documentation="Renders the widget." name="render" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="&amp;HTML_Template_HIT" abstract="0" documentation="Template to use to render the widget." name="template" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="95" type="array" abstract="0" documentation="Gets a list of photos with their descriptions and thumbnails.
+
+Returns an array of associative arrays with this keys:
+&lt;ul>
+&lt;li>&lt;b>file:&lt;/b> Photo filename.&lt;/li>
+&lt;li>&lt;b>desc:&lt;/b> Photo Description.&lt;/li>
+&lt;li>&lt;b>thumb:&lt;/b> Photo thumbnail filename.&lt;/li>
+&lt;/ul>
+" name="getList" static="0" scope="202" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="string" abstract="0" documentation="Directory where images are." name="root" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="2" value="" type="array" abstract="0" documentation="Images extensions to accept." name="exts" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="3" value="" type="string" abstract="0" documentation="Format to use to save the thumbs." name="format" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="4" value="" type="string" abstract="0" documentation="Directory where the thumbs are." name="thumbsdir" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="97" type="string" abstract="0" documentation="Creates an image thumbnail, returning his filename." name="makeThumb" static="1" scope="202" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="string" abstract="0" documentation="Filename of the image to create the thumb." name="filename" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="3" value="" type="string" abstract="0" documentation="Thumbs format." name="format" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="4" value="" type="string" abstract="0" documentation="Directory where to put the thumbs." name="thumbsdir" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="5" value="" type="string" abstract="0" documentation="Root directory." name="root" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="6" value="100" type="int" abstract="0" documentation="Maximum thumbnail size." name="size" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="98" type="string" abstract="0" documentation="Returns the filename of an image thumb." name="getThumbFilename" static="0" scope="202" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="string" abstract="0" documentation="Filename of the image to get the thumb name." name="filename" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="2" value="" type="string" abstract="0" documentation="Thumbs format." name="format" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="3" value="" type="string" abstract="0" documentation="Directory where the thumbs are." name="thumbsdir" static="0" scope="200" />
+     <UML:Parameter stereotype="" package="" xmi.id="4" value="" type="string" abstract="0" documentation="Root directory." name="root" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="102" type="string" abstract="0" documentation="Returns the description of the album." name="getDescription" static="0" scope="202" />
+    <UML:Operation stereotype="" package="" xmi.id="100" type="array" abstract="0" documentation="Splits a filename returning an array with the path, name and extension." name="splitFilename" static="1" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="string" abstract="0" documentation="Filename to split." name="filename" static="0" scope="200" />
+    </UML:Operation>
+   </UML:Class>
+   <UML:Class stereotype="" package="BIFE/Album" xmi.id="103" abstract="0" documentation="Photo widget." name="Photo" static="0" scope="200" >
+    <UML:Operation stereotype="" package="" xmi.id="108" type="string" abstract="0" documentation="Renders the widget using a template returning a string with the results." name="render" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="&amp;HTML_Template_HIT" abstract="0" documentation="Template to use to render the widget." name="template" static="0" scope="200" />
+    </UML:Operation>
+   </UML:Class>
+   <UML:Class stereotype="" package="BIFE/Album" xmi.id="151" abstract="0" documentation="Album pager to an easier navigation when viewing photos." name="Pager" static="0" scope="200" >
+    <UML:Operation stereotype="" package="" xmi.id="153" type="void" abstract="0" documentation="Constructor." name="BIFE_Album_Pager" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="array" abstract="0" documentation="Attributes." name="attrs" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="154" type="void" abstract="0" documentation="Constructor." name="__construct" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="array" abstract="0" documentation="Attributes." name="attrs" static="0" scope="200" />
+    </UML:Operation>
+    <UML:Operation stereotype="" package="" xmi.id="155" type="string" abstract="0" documentation="Renders the widget using a template returning a string with the results." name="render" static="0" scope="200" >
+     <UML:Parameter stereotype="" package="" xmi.id="1" value="" type="&amp;HTML_Template_HIT" abstract="0" documentation="Template to use to render the widget." name="template" static="0" scope="200" />
+    </UML:Operation>
+   </UML:Class>
+  </umlobjects>
+  <diagrams>
+   <diagram snapgrid="0" showattsig="1" fillcolor="#ffffc0" showgrid="1" showopsig="0" usefillcolor="1" snapx="10" snapy="10" showatts="1" xmi.id="114" documentation="" type="402" showops="1" showpackage="1" name="Album Classes" localid="30000" showstereotype="0" showscope="1" font="Helvetica,9,-1,5,48,0,0,0,0,0" linecolor="#ff0000" >
+    <widgets>
+     <UML:ConceptWidget usesdiagramfillcolour="0" width="90" showattsigs="600" usesdiagramusefillcolour="0" x="222" linecolour="#ff0000" y="23" showopsigs="600" usesdiagramlinecolour="0" fillcolour="#dcdcdc" height="25" usefillcolor="1" showattributes="0" xmi.id="3" showoperations="0" showpackage="1" showscope="1" showstereotype="0" font="Helvetica,9,-1,5,48,0,0,0,0,0" />
+     <UML:ConceptWidget usesdiagramfillcolour="0" width="161" showattsigs="601" usesdiagramusefillcolour="0" x="22" linecolour="#ff0000" y="175" showopsigs="600" usesdiagramlinecolour="0" fillcolour="#ffffc0" height="142" usefillcolor="1" showattributes="1" xmi.id="20" showoperations="1" showpackage="1" showscope="1" showstereotype="0" font="Helvetica,9,-1,5,48,0,0,0,0,0" />
+     <UML:ConceptWidget usesdiagramfillcolour="0" width="126" showattsigs="601" usesdiagramusefillcolour="0" x="204" linecolour="#ff0000" y="175" showopsigs="600" usesdiagramlinecolour="0" fillcolour="#ffffc0" height="37" usefillcolor="1" showattributes="1" xmi.id="103" showoperations="1" showpackage="1" showscope="1" showstereotype="0" font="Helvetica,9,-1,5,48,0,0,0,0,0" />
+     <UML:ConceptWidget usesdiagramfillcolour="0" width="148" showattsigs="601" usesdiagramusefillcolour="0" x="352" linecolour="#ff0000" y="175" showopsigs="600" usesdiagramlinecolour="0" fillcolour="#ffffc0" height="67" usefillcolor="1" showattributes="1" xmi.id="151" showoperations="1" showpackage="1" showscope="1" showstereotype="0" font="Helvetica,9,-1,5,48,0,0,0,0,0" />
+    </widgets>
+    <messages/>
+    <associations>
+     <UML:AssocWidget totalcounta="2" indexa="1" totalcountb="4" indexb="1" widgetbid="3" widgetaid="20" documentation="" type="500" >
+      <linepath>
+       <startpoint startx="102" starty="175" />
+       <endpoint endx="244" endy="48" />
+      </linepath>
+     </UML:AssocWidget>
+     <UML:AssocWidget totalcounta="2" indexa="1" totalcountb="4" indexb="2" widgetbid="3" widgetaid="103" documentation="" type="500" >
+      <linepath>
+       <startpoint startx="267" starty="175" />
+       <endpoint endx="267" endy="48" />
+      </linepath>
+     </UML:AssocWidget>
+     <UML:AssocWidget totalcounta="2" indexa="1" totalcountb="4" indexb="3" widgetbid="3" widgetaid="151" documentation="" type="500" >
+      <linepath>
+       <startpoint startx="426" starty="175" />
+       <endpoint endx="289" endy="48" />
+      </linepath>
+     </UML:AssocWidget>
+    </associations>
+   </diagram>
+  </diagrams>
+  <listview>
+   <listitem open="1" type="800" id="-1" label="Views" >
+    <listitem open="1" type="801" id="-1" label="Logical View" >
+     <listitem open="1" type="803" id="-1" label="Album" >
+      <listitem open="1" type="807" id="114" label="Album Classes" />
+      <listitem open="0" type="813" id="151" label="Pager" >
+       <listitem open="0" type="815" id="153" label="BIFE_Album_Pager" />
+       <listitem open="0" type="815" id="154" label="__construct" />
+       <listitem open="0" type="815" id="155" label="render" />
+      </listitem>
+      <listitem open="0" type="813" id="103" label="Photo" >
+       <listitem open="0" type="815" id="108" label="render" />
+      </listitem>
+      <listitem open="0" type="813" id="20" label="Thumbs" >
+       <listitem open="0" type="815" id="22" label="BIFE_Album_Thumbs" />
+       <listitem open="0" type="815" id="57" label="__construct" />
+       <listitem open="0" type="815" id="102" label="getDescription" />
+       <listitem open="0" type="815" id="95" label="getList" />
+       <listitem open="0" type="815" id="98" label="getThumbFilename" />
+       <listitem open="0" type="815" id="97" label="makeThumb" />
+       <listitem open="0" type="815" id="23" label="render" />
+       <listitem open="0" type="815" id="100" label="splitFilename" />
+      </listitem>
+     </listitem>
+     <listitem open="1" type="803" id="-1" label="BIFE" >
+      <listitem open="0" type="813" id="3" label="Widget" />
+     </listitem>
+    </listitem>
+    <listitem open="1" type="802" id="-1" label="Use Case View" />
+   </listitem>
+  </listview>
+ </XMI.content>
+</XMI>
