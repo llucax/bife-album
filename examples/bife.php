@@ -36,8 +36,9 @@ require_once 'BIFE/Translate.php';
 // }}}
 
 // Selects the file to view {{{
-$file = isset($_REQUEST['BIFE']) ? $_REQUEST['BIFE'] : 'index.xbf';
-#$file = isset($_SERVER['PATH_INFO']) ? ".{$_SERVER['PATH_INFO']}" : 'index.xbf';
+$file = (@$_SERVER['PATH_INFO'] and ($_SERVER['PATH_INFO'] != '/'))
+    ? ".{$_SERVER['PATH_INFO']}"
+    : 'index.xbf';
 // }}}
 
 // Looks if we want to show the source {{{

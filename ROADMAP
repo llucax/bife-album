@@ -1,15 +1,26 @@
 $Id$
 
-Version 0.12
-============
-
-    - Start using config file for default widgets attributes.
-
 
 Version 0.13
 ============
 
-    - Separate Album funtionality function from renderer (BIFE_Album).
-    - Use hooks libs for this.
+    - Implements BIFE_Album_Pager.
 
+
+Version 0.14
+=============
+
+    - Separate Album funtionality function from BIFE_Album, using hooks.
+
+
+Version 1.0.0
+=============
+
+    - Write documentation.
+
+
+Version 1.2.0
+=============
+
+    - Start using config file for default widgets attributes.
 
