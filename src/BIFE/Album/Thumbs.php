@@ -108,10 +108,10 @@ class BIFE_Album_Thumbs extends BIFE_Widget {
                 $cur = $row * $this->attrs['COLUMNS'] + $col;
                 if ($photo = @$list[$cur]) {
                     if (is_null($photo['THUMB'])) {
-                        $photo['THUMB'] = $this->makeThumb(
-                            BIFE_Link::getFsPath() . $photo['FILE'],
+                        $photo['THUMB'] = $this->makeThumb($photo['FILE'],
                             $this->attrs['THUMBSFORMAT'],
-                            $this->attrs['THUMBSDIR']);
+                            $this->attrs['THUMBSDIR'],
+                            BIFE_Link::getFsPath() . $this->attrs['DIR']);
                     }
                     $photo['THUMB'] = BIFE_Link::getWebPath()
                         . $this->attrs['DIR'] . '/' . $photo['THUMB'];
@@ -149,10 +149,15 @@ Returns an array of associative arrays with this keys:
 <li><b>thumb:</b> Photo thumbnail filename.</li>
 </ul>
      *
+     * @param  string $root Directory where images are.
+     * @param  array $exts Images extensions to accept.
+     * @param  string $format Format to use to save the thumbs.
+     * @param  string $thumbsdir Directory where the thumbs are.
+     *
      * @return array
      * @access protected
      */
-    function getList() // ~X2C
+    function getList($root, $exts, $format, $thumbsdir) // ~X2C
     {
         $return = array();
         $d = dir($root);
@@ -161,7 +166,7 @@ Returns an array of associative arrays with this keys:
                 list($path, $name, $ext) = $this->splitFilename("$root/$file");
                 if (is_readable("$root/$file") and in_array($ext, $exts)) {
                     $thumb = $this->getThumbFilename($file, $format,
-                        $thumbsdir);
+                        $thumbsdir, $root);
                     $return[] = array(
                         'FILE'  => $file,
                         'DESC'  => $name,
@@ -180,20 +185,23 @@ Returns an array of associative arrays with this keys:
      * Creates an image thumbnail, returning his filename.
      *
      * @param  string $filename Filename of the image to create the thumb.
+     * @param  string $format Thumbs format.
+     * @param  string $thumbsdir Directory where to put the thumbs.
+     * @param  string $root Root directory.
      * @param  int $size Maximum thumbnail size.
      *
      * @return string
      * @access protected
+     * @static
      */
-    function makeThumb($filename, $size = 100) // ~X2C
+    function makeThumb($filename, $format, $thumbsdir, $root, $size = 100) // ~X2C
     {
-        $thumb = $this->getThumbFilename($filename, $format, $thumbsdir);
-        list($path, $name, $ext) = $this->splitFilename($thumb);
+        list($path, $name, $ext) = $this->splitFilename($filename);
         $img =& Image_Transform::factory('GD');
-        $img->load($filename);
+        $img->load("$root/$filename");
         // If image is larger than the maximum size, we resize it.
         if ($img->img_x > $size or $img->img_y > $size ) {
-            if (!@is_dir($path) and !@mkdir($path)) {
+            if (!@is_dir("$root/$thumbsdir") and !@mkdir("$root/$thumbsdir")) {
                 return null;
             }
             if (PEAR::isError($img)) {
@@ -203,10 +211,9 @@ Returns an array of associative arrays with this keys:
                 return null;
             }
         }
-        $img->save("$path/$name.$format", $format);
+        $img->save("$root/$thumbsdir/$name.$format", $format);
         $img->free();
-
-        return $thumb;
+        return "$thumbsdir/$name.$format";
     }
     // -X2C
 
@@ -215,14 +222,21 @@ Returns an array of associative arrays with this keys:
      * Returns the filename of an image thumb.
      *
      * @param  string $filename Filename of the image to get the thumb name.
+     * @param  string $format Thumbs format.
+     * @param  string $thumbsdir Directory where the thumbs are.
+     * @param  string $root Root directory.
      *
      * @return string
      * @access protected
      */
-    function getThumbFilename($filename) // ~X2C
+    function getThumbFilename($filename, $format, $thumbsdir, $root) // ~X2C
     {
         list($path, $name, $ext) = $this->splitFilename($filename);
-        return "$thumbsdir/$name.$format";
+        if (is_readable("$root/$thumbsdir/$name.$format")) {
+            return "$thumbsdir/$name.$format";
+        } else {
+            return null;
+        }
     }
     // -X2C
 
