@@ -32,10 +32,13 @@
             </dir>
             <!-- DOC -->
             <dir name="examples" role="doc">
-            <file>index.php</file>
-            <file>bife.php</file>
-            <file>index.xbf</file>
-            <file>photo.xbf</file>
+                <file>index.php</file>
+                <file>bife.php</file>
+                <file>index.xbf</file>
+                <file>photo.xbf</file>
+                <dir name="dir">
+                    <file>index.xbf</file>
+                </dir>
                 <dir name="templates">
                     <file>bife_page.tpl.html</file>
                     <file>bife_link.tpl.html</file>
