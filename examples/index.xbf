@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page title="Hola mundo!" menu="true">
+    <Title>Datos!</Title>
+    <H3>Photo album</H3>
+    <Album:Thumbs dir="../../.." columns="8"/>
+    <HR color="blue" size="3"/>
+</Page>

@@ -19,33 +19,42 @@
         <version>0.11</version>
         <date>2003-06-29</date>
         <state>alpha</state>
-        <notes>Check http://www.llucax.hn.org/desarrollo/bife/ for details.</notes>
+        <notes>Check http://bife.llucax.hn.org/ for details.</notes>
         <provides type="class" name="BIFE_Album_Thumbs"/>
         <provides type="class" name="BIFE_Album_Photo"/>
         <provides type="class" name="BIFE_Album_Pager"/>
         <filelist>
             <!-- PHP -->
-            <file role="php">BIFE/Album/Thumbs.php</file>
-            <file role="php">BIFE/Album/Photo.php</file>
-            <file role="php">BIFE/Album/Pager.php</file>
+            <dir name="/" baseinstalldir="BIFE/Album" role="php">
+                <file install-as="Thumbs.php">src/BIFE/Album/Thumbs.php</file>
+                <file install-as="Photo.php">src/BIFE/Album/Photo.php</file>
+                <file install-as="Pager.php">src/BIFE/Album/Pager.php</file>
+            </dir>
             <!-- DOC -->
-            <file role="doc">examples/index.php</file>
-            <file role="doc">examples/index.xbf</file>
-            <file role="doc">examples/photo.xbf</file>
-            <file role="doc">examples/templates/album/item.tpl.html</file>
-            <file role="doc">examples/templates/album/empty.tpl.html</file>
-            <file role="doc">examples/templates/album/cell.tpl.html</file>
-            <file role="doc">examples/templates/album/row.tpl.html</file>
-            <file role="doc">examples/templates/album/photo.tpl.html</file>
-            <file role="doc">examples/templates/album/body.tpl.html</file>
-            <file role="doc">examples/templates/bife_page.tpl.html</file>
-            <file role="doc">examples/templates/bife_link.tpl.html</file>
-            <file role="doc">examples/templates/bife_title.tpl.html</file>
+            <dir name="examples" role="doc">
+            <file>index.php</file>
+            <file>index.xbf</file>
+            <file>photo.xbf</file>
+                <dir name="templates">
+                    <file>bife_page.tpl.html</file>
+                    <file>bife_link.tpl.html</file>
+                    <file>bife_title.tpl.html</file>
+                    <dir name="album">
+                        <file>item.tpl.html</file>
+                        <file>empty.tpl.html</file>
+                        <file>cell.tpl.html</file>
+                        <file>row.tpl.html</file>
+                        <file>photo.tpl.html</file>
+                        <file>body.tpl.html</file>
+                    </dir>
+                </dir>
+            </dir>
         </filelist>
     </release>
     <deps>
         <dep type="php" rel="ge">4.2.3</dep>
-        <dep type="pkg" rel="ge" version="1.0.0beta">HTML_Template_HIT</dep>
-        <dep type="pkg" rel="ge" version="0.11">BIFE</dep>
+        <dep type="pkg" rel="ge" version="1.0.0beta1">HTML_Template_HIT</dep>
+        <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE</dep>
+        <dep type="pkg" rel="ge" version="1.0.0beta1">BIFE_Basic</dep>
     </deps>
 </package>
