@@ -1,5 +1,5 @@
-<?
-// vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+<?php
+// vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker:
 // +--------------------------------------------------------------------+
 // |                       BIFE - Buil It FastEr                        |
 // +--------------------------------------------------------------------+
@@ -26,21 +26,40 @@
 // $Id$
 //
 
+// Inicialization {{{
 ini_set('include_path', '../src:../../hit/src:../../bife/src:../../base/src:'.
     ini_get('include_path'));
 umask('002');
-
 require_once 'HTML/Template/HIT.php';
 require_once 'BIFE/Parser.php';
 require_once 'BIFE/Translate.php';
+// }}}
 
+// Selects the file to view {{{
 $file = isset($_REQUEST['BIFE']) ? $_REQUEST['BIFE'] : 'index.xbf';
+#$file = isset($_SERVER['PATH_INFO']) ? ".{$_SERVER['PATH_INFO']}" : 'index.xbf';
+// }}}
 
+// Looks if we want to show the source {{{
+if (@$_REQUEST['S']) {
+    if (@$_REQUEST['B']) {
+        // We want to see the BIFE file source.
+        echo '<PRE>';
+        echo htmlentities(join('', file($file)));
+    } else {
+        // We want to see the php file source.
+        highlight_file($_SERVER['SCRIPT_FILENAME']);
+    }
+    exit;
+}
+// }}}
+
+// If we are not looking at the source, we use BIFE to show the page {{{
 $template =& new HTML_Template_HIT('templates');
-
-$parser =& new BIFE_Parser('BIFE_Translate');
-$page =& $parser->parseFile($file);
+$parser   =& new BIFE_Parser('BIFE_Translate');
+$page     =& $parser->parseFile($file);
 $parser->__destruct();
 echo $page->render($template);
+// }}}
 
 ?>
