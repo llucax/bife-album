@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE package SYSTEM "/usr/share/doc/pear/data/PEAR/package.dtd">
+<package version="1.0">
+    <name>BIFE_Album</name>
+    <summary>BIFE Album Widget Set</summary>
+    <description>TBD.
+    </description>
+    <license>GPL</license>
+    <maintainers>
+        <maintainer>
+            <user>luca</user>
+            <name>Leandro Lucarella</name>
+            <email>luca@lugmen.org.ar</email>
+            <role>lead</role>
+        </maintainer>
+    </maintainers>
+
+    <release>
+        <version>0.11</version>
+        <date>2003-06-29</date>
+        <state>alpha</state>
+        <notes>Check http://www.llucax.hn.org/desarrollo/bife/ for details.</notes>
+        <filelist>
+            <!-- PHP -->
+            <file role="php">BIFE/Album/Thumbs.php</file>
+            <file role="php">BIFE/Album/Photo.php</file>
+            <file role="php">BIFE/Album/Pager.php</file>
+            <!-- DOC -->
+            <file role="doc">examples/index.php</file>
+            <file role="doc">examples/index.xbf</file>
+            <file role="doc">examples/photo.xbf</file>
+            <file role="doc">examples/templates/album/item.tpl.html</file>
+            <file role="doc">examples/templates/album/empty.tpl.html</file>
+            <file role="doc">examples/templates/album/cell.tpl.html</file>
+            <file role="doc">examples/templates/album/row.tpl.html</file>
+            <file role="doc">examples/templates/album/photo.tpl.html</file>
+            <file role="doc">examples/templates/album/body.tpl.html</file>
+            <file role="doc">examples/templates/bife_page.tpl.html</file>
+            <file role="doc">examples/templates/bife_link.tpl.html</file>
+            <file role="doc">examples/templates/bife_title.tpl.html</file>
+        </filelist>
+    </release>
+    <deps>
+        <dep type="php" rel="ge">4.2.3</dep>
+        <dep type="pkg" rel="ge" version="1.0.0beta">HTML_Template_HIT</dep>
+        <dep type="pkg" rel="ge" version="0.11">BIFE</dep>
+    </deps>
+</package>
