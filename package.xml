@@ -20,6 +20,9 @@
         <date>2003-06-29</date>
         <state>alpha</state>
         <notes>Check http://www.llucax.hn.org/desarrollo/bife/ for details.</notes>
+        <provides type="class" name="BIFE_Album_Thumbs"/>
+        <provides type="class" name="BIFE_Album_Photo"/>
+        <provides type="class" name="BIFE_Album_Pager"/>
         <filelist>
             <!-- PHP -->
             <file role="php">BIFE/Album/Thumbs.php</file>
