@@ -2,7 +2,7 @@
 <Page title="Hola mundo!" menu="true">
     <Title>Datos!</Title>
     <H3>Photo album</H3>
-    <Album:Thumbs dir="images" columns="8"/>
+    <Album:Thumbs dir="../images" columns="8"/>
     <HR noshade="noshade" size="2"/>
     <Link data-s="1" data-b="1">View BIFE (xbf) source</Link> |
     <Link data-s="1">View PHP source</Link>

@@ -78,8 +78,7 @@ class BIFE_Album_Thumbs extends BIFE_Widget {
             'EXTENSIONS'    => 'png,jpg,jpeg,PNG,JPG,JPEG',
             'MAXROWS'       => 0,
             'COLUMNS'       => 4,
-            'LINK-BIFE'     => 'photo.xbf',
-            'LINK-URL'      => '',
+            'LINK'          => 'photo.xbf',
         );
         $attrs = array_merge($defaults, $attrs);
         $attrs['EXTENSIONS'] = explode(',', $attrs['EXTENSIONS']);
@@ -99,7 +98,9 @@ class BIFE_Album_Thumbs extends BIFE_Widget {
     function render(&$template) // ~X2C
     {
         $template->pushGroup('album');
-        $list = $this->getList();
+        $list = $this->getList(BIFE_Link::getFsPath() . $this->attrs['DIR'],
+                $this->attrs['EXTENSIONS'], $this->attrs['THUMBSFORMAT'],
+                $this->attrs['THUMBSDIR']);
         $tot  = count($list);
         $rows = ceil($tot / $this->attrs['COLUMNS']);
         for ($row = 0; $row < $rows; $row++) {
@@ -107,13 +108,18 @@ class BIFE_Album_Thumbs extends BIFE_Widget {
                 $cur = $row * $this->attrs['COLUMNS'] + $col;
                 if ($photo = @$list[$cur]) {
                     if (is_null($photo['THUMB'])) {
-                        $photo['THUMB'] = $this->makeThumb($photo['FILE']);
+                        $photo['THUMB'] = $this->makeThumb(
+                            BIFE_Link::getFsPath() . $photo['FILE'],
+                            $this->attrs['THUMBSFORMAT'],
+                            $this->attrs['THUMBSDIR']);
                     }
+                    $photo['THUMB'] = BIFE_Link::getWebPath()
+                        . $this->attrs['DIR'] . '/' . $photo['THUMB'];
                     $photo['URL'] = BIFE_Link::getURL(
                         array(
-                            'BIFE'                  => $this->attrs['LINK-BIFE'],
-                            'URL'                   => $this->attrs['LINK-URL'],
-                            'DATA-BIFE_ALBUM_FILE'  => $photo['FILE'],
+                            'URL'                   => $this->attrs['LINK'],
+                            'DATA-BIFE_ALBUM_FILE'  => BIFE_Link::getWebPath()
+                                 . $this->attrs['DIR'] . '/' . $photo['FILE'],
                         )
                     );
                     $cell = $template->parse('item', $photo);
@@ -148,20 +154,18 @@ Returns an array of associative arrays with this keys:
      */
     function getList() // ~X2C
     {
-        $root = $this->attrs['DIR'];
-        $exts = $this->attrs['EXTENSIONS'];
-        $format = $this->attrs['THUMBSFORMAT'];
         $return = array();
         $d = dir($root);
         if ($d) {
             while (($file = $d->read()) !== false) {
                 list($path, $name, $ext) = $this->splitFilename("$root/$file");
                 if (is_readable("$root/$file") and in_array($ext, $exts)) {
-                    $thumb = $this->getThumbFilename("$root/$file");
+                    $thumb = $this->getThumbFilename($file, $format,
+                        $thumbsdir);
                     $return[] = array(
-                        'FILE'  => "$root/$file",
+                        'FILE'  => $file,
                         'DESC'  => $name,
-                        'THUMB' => is_readable($thumb) ? $thumb : null,
+                        'THUMB' => $thumb,
                     );
                 }		
             }
@@ -183,8 +187,7 @@ Returns an array of associative arrays with this keys:
      */
     function makeThumb($filename, $size = 100) // ~X2C
     {
-        $format = $this->attrs['THUMBSFORMAT'];
-        $thumb = $this->getThumbFilename($filename);
+        $thumb = $this->getThumbFilename($filename, $format, $thumbsdir);
         list($path, $name, $ext) = $this->splitFilename($thumb);
         $img =& Image_Transform::factory('GD');
         $img->load($filename);
@@ -218,13 +221,8 @@ Returns an array of associative arrays with this keys:
      */
     function getThumbFilename($filename) // ~X2C
     {
-        $root = $this->attrs['DIR'];
-        $format = $this->attrs['THUMBSFORMAT'];
-        $thumbsdir = $this->attrs['THUMBSDIR'];
-
         list($path, $name, $ext) = $this->splitFilename($filename);
-
-        return "$root/$thumbsdir/$name.$format";
+        return "$thumbsdir/$name.$format";
     }
     // -X2C
 
